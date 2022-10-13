@@ -1,1 +1,1 @@
-Project inspired in https://github.com/typestack/class-validator the project
+Project inspired in https://github.com/typestack/class-validator project
