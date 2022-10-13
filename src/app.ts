@@ -8,12 +8,14 @@ const registeredValidators: ValidatorConfig = {}
 
 function Required(target: any, propertyName: string) {
     registeredValidators[target.constructor.name] = {
+        ...registeredValidators[target.constructor.name],
         [propertyName]: ['required']
     }
 }
 
 function PositiveNumber(target: any, propertyName: string) {
     registeredValidators[target.constructor.name] = {
+        ...registeredValidators[target.constructor.name],
         [propertyName]: ['positive']
     }
 }
@@ -22,10 +24,8 @@ function validate(obj: any) {
     const objValidatorConfig = registeredValidators[obj.constructor.name] 
     if(!objValidatorConfig) { return true }
 
+    let isValid = true
     for(const property in objValidatorConfig ) {
-        console.log(property)
-        
-        let isValid = true
         for(const validator of objValidatorConfig[property]) {
             switch(validator) {
                 case 'required': 
